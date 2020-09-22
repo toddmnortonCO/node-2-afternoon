@@ -6,6 +6,8 @@ const app = express();
 const messageBaseURL = '/api/messages';
 
 app.use(express.json());
+app.use(express.static(__dirname + '/../public/build'));
+
 app.post(messageBaseURL ,mc.create);
 app.get(messageBaseURL, mc.read);
 app.put(`${messageBaseURL}/:id`, mc.update); //helpful trick making the base URL a variable

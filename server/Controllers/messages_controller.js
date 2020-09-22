@@ -26,8 +26,9 @@ module.exports = {
         res.status(200).send(messages)
     },
     delete: (req, res) => {
-        let index = messages.findIndex(element => element.id === +req.messages.id);
-        messages.splice(index, 1);
+        const deleteID = req.params.id;
+        const messageIndex = messages.findIndex(message => message.id == deleteID);
+        messages.splice(messageIndex, 1);
         res.status(200).send(messages)
     }
 }
