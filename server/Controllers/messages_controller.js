@@ -12,8 +12,16 @@ module.exports = {
         res.status(200).send(messages)
     },
     update: (req, res) => {
-        let message = messages.find(element => element.id === +req.params.id);
-        message.name = req.body.name;
+        const { text } = req.body;
+        const updateID = req.params.id;
+        const messageIndex = messages.findIndex(message => message.id == updateID);
+        let message = messages[messageIndex];
+
+        messages[messageIndex] = {
+            id: message.id,
+            text: text || message.text,
+            time: message.time
+        };
 
         res.status(200).send(messages)
     },
